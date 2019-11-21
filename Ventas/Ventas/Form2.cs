@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 namespace Ventas {
     public partial class Form2 : Form {
 
-        private String PATH = "C:\\Users\\ElMaps\\source\\repos\\rmaafs\\SistemaVentas\\Ventas\\img";
+        public static String PATH = "C:\\Users\\ElMaps\\source\\repos\\rmaafs\\SistemaVentas\\Ventas\\img";
 
         private MySQL mysql;
         private Form preForm;
