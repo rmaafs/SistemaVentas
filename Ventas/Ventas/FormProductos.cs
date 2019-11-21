@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Ventas {
     public partial class FormProductos : Form {
 
-        public static String PATH = "C:\\Users\\ElMaps\\source\\repos\\rmaafs\\SistemaVentas\\Ventas\\img";
+        public String PATH = "C:\\Users\\ElMaps\\source\\repos\\rmaafs\\SistemaVentas\\Ventas\\img";
 
         private Form preForm;
         private MySQL mysql;
@@ -67,7 +67,19 @@ namespace Ventas {
 
         private void listView_DoubleClick(object sender, EventArgs e) {
             String s = listView.SelectedItems[0].SubItems[0].Text;
-            MessageBox.Show("Seleccionado: " + s + ", ");
+            //MessageBox.Show("Seleccionado: " + s + ", ");
+
+            foreach (Producto p in productos) {
+                if (p.nombre.Equals(s)) {
+                    new FormVistaProducto(p, PATH).Show();
+                    break;
+                }
+            }
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e) {
+            this.Close();
+            preForm.Show();
         }
     }
 }

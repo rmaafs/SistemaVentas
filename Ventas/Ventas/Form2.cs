@@ -182,7 +182,7 @@ namespace Ventas {
                 picImagen.Image = (Image)image;
                 Controls.Add(picImagen);
             } catch (Exception e) {
-                MessageBox.Show("La imagen no existe.");
+                MessageBox.Show("La imagen no existe. " + e.Message);
             }
         }
 
