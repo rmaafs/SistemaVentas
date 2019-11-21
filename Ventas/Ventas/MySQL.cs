@@ -21,8 +21,6 @@ namespace Ventas {
         public MySQL() {
             con = new MySqlConnection();
             con.ConnectionString = "server = " + HOST + "; database = " + DATABASE + "; uid = " + USER + "; pwd = " + PASS + ";";
-
-            conectar();
         }
 
         ~MySQL() {
@@ -30,11 +28,13 @@ namespace Ventas {
         }
 
         public bool conectar() {
-            try {
-                con.Open();
-                return true;
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+            if (con.State == ConnectionState.Closed) {
+                try {
+                    con.Open();
+                    return true;
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
             return false;
         }
@@ -54,15 +54,18 @@ namespace Ventas {
         }
 
         public MySqlDataReader select(String sql) {
+            conectar();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             return cmd.ExecuteReader();
         }
 
         public MySqlCommand getCMD(String sql) {
+            conectar();
             return new MySqlCommand(sql, con);
         }
 
         public bool query(String sql) {
+            conectar();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             try {
                 cmd.ExecuteNonQuery();
@@ -74,6 +77,7 @@ namespace Ventas {
         }
 
         public int count(String sql) {
+            conectar();
             int i = 0;
             MySqlDataReader reader = select(sql);
             while (reader.Read()) {
@@ -83,6 +87,7 @@ namespace Ventas {
         }
 
         public DataTable getTable(String sql) {
+            conectar();
             MySqlDataAdapter returnVal = new MySqlDataAdapter(sql, con);
             DataTable dt = new DataTable("CharacterInfo");
             returnVal.Fill(dt);
