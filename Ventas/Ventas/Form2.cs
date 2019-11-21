@@ -17,9 +17,13 @@ namespace Ventas {
         private Form preForm;
         private List<Producto> productos;
 
+        //Variable que nos dirá que producto estaremos editando.
+        private int editando = 0;
+
         public Form2(Form preForm) {
             this.preForm = preForm;
             InitializeComponent();
+            btnGuardar.Hide();
 
             productos = new List<Producto>();
             mysql = new MySQL();
@@ -47,7 +51,7 @@ namespace Ventas {
             int precio = int.Parse(txtPrecio.Text);
             int existencias = int.Parse(txtExist.Text);
 
-            
+
 
             String sql = String.Format("INSERT INTO producto(pNombre, pDescripcion, pImagen, pPrecio, pExistencias) VALUES ('{0}', '{1}', '{2}', {3}, {4})",
                 nombre, desc, imagen, precio, existencias);
@@ -98,6 +102,61 @@ namespace Ventas {
 
         private void btnLimpiar_Click(object sender, EventArgs e) {
             limpiar();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e) {
+            int id = int.Parse(Interaction.InputBox("Ingresa el ID", "Ingresa el ID a editar", "Editar", -1, -1));
+            foreach (Producto p in productos) {
+                if (p.id == id) {
+                    editando = id;
+
+                    txtNombre.Text = p.nombre;
+                    txtDesc.Text = p.descripcion;
+                    txtImg.Text = p.imagen;
+                    txtPrecio.Text = p.precio + "";
+                    txtExist.Text = p.existencias + "";
+
+                    btnGuardar.Show();
+                    btnInsertar.Hide();
+                    btnEditar.Hide();
+                    btnBorrar.Hide();
+                    btnLimpiar.Hide();
+
+                    return;
+                }
+            }
+            MessageBox.Show("No existe este ID.");
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e) {
+            String nombre = txtNombre.Text;
+            String desc = txtDesc.Text;
+            String imagen = txtImg.Text;
+            if (!verificar(new string[] { nombre, desc, imagen, txtPrecio.Text, txtExist.Text })) {
+                MessageBox.Show("Por favor ingresa todos los datos.");
+                return;
+            }
+
+
+            int precio = int.Parse(txtPrecio.Text);
+            int existencias = int.Parse(txtExist.Text);
+
+            btnGuardar.Hide();
+            btnInsertar.Show();
+            btnEditar.Show();
+            btnBorrar.Show();
+            btnLimpiar.Show();
+
+            String sql = String.Format("UPDATE producto SET pNombre='{0}', pDescripcion='{1}', pImagen='{2}', pPrecio='{3}', pExistencias='{4}' WHERE ID={5}",
+                nombre, desc, imagen, precio, existencias, editando);
+            if (mysql.query(sql)) {
+                MessageBox.Show("Producto con el ID " + editando + " editado.");
+                limpiar();
+                refillTabla();
+            } else {
+                MessageBox.Show("No se pudo insertar el producto.");
+            }
+            editando = 0;
         }
     }
 }
