@@ -34,11 +34,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
             this.txtDesc = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtLimpiar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -134,24 +134,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnEditar
             // 
-            this.button2.Location = new System.Drawing.Point(832, 84);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnEditar.Location = new System.Drawing.Point(832, 84);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 12;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnBorrar
             // 
-            this.button3.Location = new System.Drawing.Point(832, 158);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Borrar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBorrar.Location = new System.Drawing.Point(832, 158);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrar.TabIndex = 13;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // txtDesc
             // 
@@ -169,26 +169,26 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
-            // txtLimpiar
+            // btnLimpiar
             // 
-            this.txtLimpiar.Location = new System.Drawing.Point(833, 235);
-            this.txtLimpiar.Name = "txtLimpiar";
-            this.txtLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.txtLimpiar.TabIndex = 16;
-            this.txtLimpiar.Text = "Limpiar";
-            this.txtLimpiar.UseVisualStyleBackColor = true;
-            this.txtLimpiar.Click += new System.EventHandler(this.txtLimpiar_Click);
+            this.btnLimpiar.Location = new System.Drawing.Point(833, 235);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 16;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 536);
-            this.Controls.Add(this.txtLimpiar);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtDesc);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnBorrar);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -222,10 +222,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.RichTextBox txtDesc;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button txtLimpiar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

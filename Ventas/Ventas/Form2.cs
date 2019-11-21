@@ -15,10 +15,13 @@ namespace Ventas {
 
         private MySQL mysql;
         private Form preForm;
+        private List<Producto> productos;
 
         public Form2(Form preForm) {
             this.preForm = preForm;
             InitializeComponent();
+
+            productos = new List<Producto>();
             mysql = new MySQL();
 
             refillTabla();
@@ -26,7 +29,7 @@ namespace Ventas {
 
         private void refillTabla() {
             DataGridView dgv = tablaProd;
-            DataTable table = mysql.getTable("SELECT * FROM producto");
+            DataTable table = mysql.getTable("SELECT * FROM producto", productos);
             dgv.DataSource = table;
             dgv.AutoResizeColumns();
         }
@@ -51,6 +54,7 @@ namespace Ventas {
             if (mysql.query(sql)) {
                 MessageBox.Show("Producto insertado.");
                 limpiar();
+                refillTabla();
             } else {
                 MessageBox.Show("No se pudo insertar el producto.");
             }
@@ -76,13 +80,24 @@ namespace Ventas {
             return true;
         }
 
-        private void txtLimpiar_Click(object sender, EventArgs e) {
-            limpiar();
+        private void btnBorrar_Click(object sender, EventArgs e) {
+            int id = int.Parse(Interaction.InputBox("Ingresa el ID", "Ingresa el ID a borrar", "Borrar", -1, -1));
+            foreach (Producto p in productos) {
+                if (p.id == id) {
+                    if (MessageBox.Show("¿Estas seguro que quieres eliminar el producto " + p.nombre + "?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                        if (mysql.query("DELETE FROM producto WHERE ID=" + id)) {
+                            MessageBox.Show("Producto eliminado.");
+                        }
+                    }
+                    refillTabla();
+                    return;
+                }
+            }
+            MessageBox.Show("No existe este ID.");
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            string input = Interaction.InputBox("Prompt", "Title", "Default", -1, -1);
-
+        private void btnLimpiar_Click(object sender, EventArgs e) {
+            limpiar();
         }
     }
 }

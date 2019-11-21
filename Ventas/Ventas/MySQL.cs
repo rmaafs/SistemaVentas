@@ -28,6 +28,7 @@ namespace Ventas {
         }
 
         public bool conectar() {
+            cerrar();
             if (con.State == ConnectionState.Closed) {
                 try {
                     con.Open();
@@ -40,15 +41,17 @@ namespace Ventas {
         }
 
         public bool cerrar() {
-            try {
-                con.Close();
-                con.Dispose();
+            if (con.State == ConnectionState.Open) {
+                try {
+                    con.Close();
+                    con.Dispose();
 
-                Debug.WriteLine("DB Cerrada.");
+                    Debug.WriteLine("DB Cerrada.");
 
-                return true;
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                    return true;
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
             return false;
         }
@@ -68,7 +71,7 @@ namespace Ventas {
             conectar();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             try {
-                cmd.ExecuteNonQuery();
+                cmd.ExecuteReader();
                 return true;
             } catch (Exception e) {
                 MessageBox.Show(e.Message);
@@ -86,10 +89,22 @@ namespace Ventas {
             return i;
         }
 
-        public DataTable getTable(String sql) {
+        public void llenarProductos(List<Producto> productos) {
+            productos.Clear();
+            conectar();
+            MySqlDataReader reader = select("SELECT * FROM producto");
+            while (reader.Read()) {
+                productos.Add(new Producto(reader));
+            }
+            cerrar();
+        }
+
+        public DataTable getTable(String sql, List<Producto> productos) {
+            llenarProductos(productos);
+
             conectar();
             MySqlDataAdapter returnVal = new MySqlDataAdapter(sql, con);
-            DataTable dt = new DataTable("CharacterInfo");
+            DataTable dt = new DataTable("Productos");
             returnVal.Fill(dt);
             return dt;
         }
