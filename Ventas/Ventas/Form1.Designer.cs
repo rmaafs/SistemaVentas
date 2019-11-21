@@ -68,6 +68,7 @@
             this.btnIngresar.TabIndex = 3;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click_1);
             // 
             // btnTienda
             // 
@@ -77,6 +78,7 @@
             this.btnTienda.TabIndex = 4;
             this.btnTienda.Text = "Entrar a la tienda";
             this.btnTienda.UseVisualStyleBackColor = true;
+            this.btnTienda.Click += new System.EventHandler(this.btnTienda_Click);
             // 
             // label2
             // 

@@ -185,5 +185,10 @@ namespace Ventas {
                 MessageBox.Show("La imagen no existe.");
             }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e) {
+            preForm.Show();
+            this.Close();
+        }
     }
 }

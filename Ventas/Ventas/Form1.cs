@@ -21,11 +21,11 @@ namespace Ventas {
             mysql = new MySQL();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e) {
+        private void btnIngresar_Click_1(object sender, EventArgs e) {
             String user = txtUsuario.Text;
             String pass = Encripter.Crypt(txtPass.Text);
             String sql = "SELECT * FROM usuario WHERE user = '" + user + "' AND passwd = '" + pass + "'";
-            
+
             if (mysql.count(sql) == 0) {
                 MessageBox.Show("Usuario y/o contraseña incorrecto.");
             } else {
@@ -37,18 +37,10 @@ namespace Ventas {
         }
 
         private void btnTienda_Click(object sender, EventArgs e) {
-            /*MySQL mysql = new MySQL();
+            new FormProductos(this).Show();
 
-            String sql = "INSERT INTO usuario(user, passwd) VALUES('chor', '123');";
-
-            if (mysql.query(sql)) {
-                MessageBox.Show("Ingresado!");
-            } else {
-                MessageBox.Show("No ha sido ingresado.");
-            }
-
-            mysql.cerrar();*/
+            mysql.cerrar();
+            this.Hide();
         }
-
     }
 }
