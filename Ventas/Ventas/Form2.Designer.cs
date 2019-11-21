@@ -37,11 +37,12 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.txtDesc = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picImagen = new System.Windows.Forms.PictureBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tablaProd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // tablaProd
@@ -70,7 +71,7 @@
             // 
             // txtImg
             // 
-            this.txtImg.Location = new System.Drawing.Point(26, 100);
+            this.txtImg.Location = new System.Drawing.Point(516, 12);
             this.txtImg.Name = "txtImg";
             this.txtImg.Size = new System.Drawing.Size(139, 20);
             this.txtImg.TabIndex = 4;
@@ -163,13 +164,13 @@
             this.txtDesc.TabIndex = 14;
             this.txtDesc.Text = "";
             // 
-            // pictureBox1
+            // picImagen
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(483, 39);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(207, 194);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.picImagen.Location = new System.Drawing.Point(483, 39);
+            this.picImagen.Name = "picImagen";
+            this.picImagen.Size = new System.Drawing.Size(207, 194);
+            this.picImagen.TabIndex = 15;
+            this.picImagen.TabStop = false;
             // 
             // btnLimpiar
             // 
@@ -191,14 +192,25 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // btnFile
+            // 
+            this.btnFile.Location = new System.Drawing.Point(28, 98);
+            this.btnFile.Name = "btnFile";
+            this.btnFile.Size = new System.Drawing.Size(137, 23);
+            this.btnFile.TabIndex = 18;
+            this.btnFile.Text = "Seleccionar";
+            this.btnFile.UseVisualStyleBackColor = true;
+            this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 536);
+            this.Controls.Add(this.btnFile);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picImagen);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnEditar);
@@ -216,7 +228,7 @@
             this.Name = "Form2";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.tablaProd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,8 +250,9 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.RichTextBox txtDesc;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picImagen;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnFile;
     }
 }

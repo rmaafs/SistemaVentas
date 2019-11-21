@@ -13,6 +13,8 @@ using MySql.Data.MySqlClient;
 namespace Ventas {
     public partial class Form2 : Form {
 
+        private String PATH = "C:\\Users\\ElMaps\\source\\repos\\rmaafs\\SistemaVentas\\Ventas\\img";
+
         private MySQL mysql;
         private Form preForm;
         private List<Producto> productos;
@@ -122,6 +124,8 @@ namespace Ventas {
                     btnBorrar.Hide();
                     btnLimpiar.Hide();
 
+                    setIconImage(p.imagen);
+
                     return;
                 }
             }
@@ -157,6 +161,29 @@ namespace Ventas {
                 MessageBox.Show("No se pudo insertar el producto.");
             }
             editando = 0;
+        }
+
+        private void btnFile_Click(object sender, EventArgs e) {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = PATH;
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+                setIconImage(openFileDialog1.SafeFileName);
+            }
+        }
+
+        private void setIconImage(String name) {
+            try {
+                Bitmap image = new Bitmap(PATH + "\\" + name);
+                picImagen.SizeMode = PictureBoxSizeMode.Zoom;
+                picImagen.Image = (Image)image;
+                Controls.Add(picImagen);
+            } catch (Exception e) {
+                MessageBox.Show("La imagen no existe.");
+            }
         }
     }
 }
